@@ -1,4 +1,3 @@
-// app/cart.tsx
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { useCartStore } from '@/store/cartStore';
@@ -7,9 +6,8 @@ import { EmptyCart } from '@/components/cart/EmptyCart';
 import { colors } from '@/constants/theme';
 import { CartList } from '@/components/cart/CartList';
 
-export default function CartScreen() {
+const CartScreen = () => {
     const { items, getTotalPrice } = useCartStore();
-
     if (items.length === 0) {
         return <EmptyCart />;
     }
@@ -33,3 +31,5 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
+
+export default CartScreen;
