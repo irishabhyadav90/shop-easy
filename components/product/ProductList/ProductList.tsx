@@ -33,7 +33,7 @@ export const ProductList = ({
         return (
             <ProductCard
                 product={item}
-                onPress={onProductPress}
+                onPress={() => onProductPress(item)}
             />
         )
     }
