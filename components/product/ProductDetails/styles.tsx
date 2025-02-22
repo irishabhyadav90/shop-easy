@@ -91,4 +91,11 @@ export const styles = StyleSheet.create({
         color: colors.text.secondary,
         lineHeight: typography.size.regular * 1.5,
     },
+    footer: {
+        padding: spacing.lg,
+        paddingBottom: spacing.xl,
+        backgroundColor: colors.background.main,
+        borderTopWidth: 1,
+        borderTopColor: colors.border,
+    },
 });
