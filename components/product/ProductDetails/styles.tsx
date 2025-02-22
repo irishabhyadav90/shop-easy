@@ -1,47 +1,47 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { colors, spacing, typography } from '@/constants/theme';
-
-const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.main,
     },
-    image: {
-        width: width,
-        height: width,
-        backgroundColor: colors.background.secondary,
-    },
-    infoContainer: {
+    content: {
         padding: spacing.lg,
+        // backgroundColor: 'red'
     },
-    labelContainer: {
-        paddingHorizontal: spacing.sm,
-        paddingVertical: spacing.xs,
-        borderRadius: spacing.xs,
-        alignSelf: 'flex-start',
+    brandContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginBottom: spacing.sm,
     },
-    labelText: {
-        color: colors.background.main,
-        fontSize: typography.size.small,
+    brandName: {
+        fontSize: typography.size.regular,
+        color: colors.text.secondary,
         fontWeight: typography.weight.medium,
+    },
+    ratingContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    rating: {
+        fontSize: typography.size.small,
+        color: colors.text.secondary,
     },
     title: {
         fontSize: typography.size.large,
         fontWeight: typography.weight.bold,
-        marginBottom: spacing.md,
         color: colors.text.primary,
+        marginBottom: spacing.md,
     },
     priceContainer: {
         flexDirection: 'row',
         alignItems: 'baseline',
-        marginBottom: spacing.md,
+        marginBottom: spacing.lg,
     },
     currency: {
-        fontSize: typography.size.medium,
-        fontWeight: typography.weight.medium,
+        fontSize: typography.size.regular,
         color: colors.text.primary,
         marginRight: spacing.xs,
     },
@@ -50,35 +50,45 @@ export const styles = StyleSheet.create({
         fontWeight: typography.weight.bold,
         color: colors.primary,
     },
-    regularPrice: {
-        fontSize: typography.size.medium,
+    vatText: {
+        fontSize: typography.size.small,
         color: colors.text.light,
-        textDecorationLine: 'line-through',
         marginLeft: spacing.sm,
     },
-    ratingContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: spacing.md,
-    },
-    rating: {
-        fontSize: typography.size.regular,
-        color: colors.text.secondary,
-    },
     stockInfo: {
-        marginBottom: spacing.md,
+        backgroundColor: colors.background.secondary,
+        padding: spacing.md,
+        borderRadius: spacing.sm,
+        marginBottom: spacing.lg,
     },
     stockText: {
         fontSize: typography.size.regular,
-        color: colors.text.secondary,
+        color: colors.text.primary,
         marginBottom: spacing.xs,
     },
+    deliveryInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: spacing.xs,
+    },
     deliveryText: {
-        fontSize: typography.size.regular,
+        fontSize: typography.size.small,
         color: colors.text.secondary,
     },
-    sku: {
-        fontSize: typography.size.small,
-        color: colors.text.light,
+    descriptionContainer: {
+        borderTopWidth: 1,
+        borderTopColor: colors.border,
+        paddingTop: spacing.lg,
+    },
+    descriptionTitle: {
+        fontSize: typography.size.medium,
+        fontWeight: typography.weight.bold,
+        color: colors.text.primary,
+        marginBottom: spacing.sm,
+    },
+    description: {
+        fontSize: typography.size.regular,
+        color: colors.text.secondary,
+        lineHeight: typography.size.regular * 1.5,
     },
 });

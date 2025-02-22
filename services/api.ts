@@ -1,11 +1,11 @@
 import Constants from 'expo-constants';
 import axios from 'axios';
-import { Product } from '@/types/product';
 
 const baseURL = Constants.expoConfig?.extra?.BASE_URL || '';
 
 const api = axios.create({
-    baseURL
+    baseURL,
+    timeout: 10000
 });
 
 export const fetchProducts = async (skip = 0, take = 10) => {
@@ -17,8 +17,12 @@ export const fetchProducts = async (skip = 0, take = 10) => {
     }
 };
 
-export const fetchProductDetail = async (slug: string): Promise<Product> => {
-    const response = await axios.get(`/v1/product/${slug}`);
-    return response.data.data;
+export const fetchProductDetail = async (slug: string) => {
+    try {
+        const response = await api.get(`/v1/product/${slug}`);
+        return response.data.data;
+    } catch (error) {
+        console.log("error", error)
+    }
 };
 

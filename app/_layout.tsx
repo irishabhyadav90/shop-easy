@@ -15,7 +15,7 @@ export default function RootLayout() {
                     options={{ title: 'Products' }}
                 />
                 <Stack.Screen
-                    name="product/[product-slug]"
+                    name="product/[slug]"
                     options={{ title: 'Product Details' }}
                 />
             </Stack>
