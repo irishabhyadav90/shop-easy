@@ -1,5 +1,6 @@
 import Constants from 'expo-constants';
 import axios from 'axios';
+import { Product } from '@/types/product';
 
 const baseURL = Constants.expoConfig?.extra?.BASE_URL || '';
 
@@ -15,3 +16,9 @@ export const fetchProducts = async (skip = 0, take = 10) => {
         console.log("error", error);
     }
 };
+
+export const fetchProductDetail = async (slug: string): Promise<Product> => {
+    const response = await axios.get(`/v1/product/${slug}`);
+    return response.data.data;
+};
+
