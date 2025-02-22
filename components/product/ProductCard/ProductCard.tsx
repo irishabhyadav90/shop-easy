@@ -7,6 +7,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Product } from '@/types/product';
 import styles from './styles';
+import { useCartStore } from '@/store/cartStore';
+import { AddToCartButton } from '@/components/common/AddToCartButton/AddToCartButton';
 
 
 interface ProductCardProps {
@@ -17,6 +19,7 @@ interface ProductCardProps {
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export const ProductCard = ({ product, onPress }: ProductCardProps) => {
+    const addToCart = useCartStore(state => state.addToCart);
     const scale = useSharedValue(1);
 
     const animatedStyle = useAnimatedStyle(() => ({
@@ -29,6 +32,10 @@ export const ProductCard = ({ product, onPress }: ProductCardProps) => {
 
     const handlePressOut = () => {
         scale.value = withSpring(1);
+    };
+
+    const handleAddToCart = () => {
+        addToCart(product);
     };
 
     return (
@@ -51,6 +58,10 @@ export const ProductCard = ({ product, onPress }: ProductCardProps) => {
                     {product?.sale?.regular_price.toFixed(2)}
                 </Text>
             </View>
+            <AddToCartButton
+                onPress={handleAddToCart}
+                isSmall
+            />
         </AnimatedPressable>
     );
 };

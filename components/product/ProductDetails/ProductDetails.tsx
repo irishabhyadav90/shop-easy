@@ -5,20 +5,27 @@ import type { ProductDetail as ProductDetailInterface } from '@/types/productDet
 import { ImageGallery } from '../ImageGallery';
 import { styles } from './styles';
 import { parseDescription } from '@/utils/descriptionParser';
-interface pdp {
-    product_details: ProductDetailInterface
-}
+import { AddToCartButton } from '@/components/common/AddToCartButton/AddToCartButton';
+import { useCartStore } from '@/store/cartStore';
+
 interface ProductDetailProps {
-    product: pdp;
+    product: ProductDetailInterface;
 }
 
-export const ProductDetail = ({ product: { product_details } }: ProductDetailProps) => {
-    const formattedDescription = parseDescription(product_details.description);
+export const ProductDetail = ({ product }: ProductDetailProps) => {
+    const addToCart = useCartStore(state => state.addToCart);
+
+    const formattedDescription = parseDescription(product.description);
+
+    const handleAddToCart = () => {
+        addToCart(product);
+    };
+
     return (
         <ScrollView style={styles.container}>
             <ImageGallery
-                featured_image={product_details.images.featured_image}
-                gallery_images={product_details.images.gallery_images}
+                featured_image={product.images.featured_image}
+                gallery_images={product.images.gallery_images}
             />
 
             <View style={styles.content}>
@@ -27,9 +34,9 @@ export const ProductDetail = ({ product: { product_details } }: ProductDetailPro
                     entering={FadeInDown.delay(200)}
                     style={styles.brandContainer}
                 >
-                    <Text style={styles.brandName}>{product_details?.brand?.name}</Text>
+                    <Text style={styles.brandName}>{product?.brand?.name}</Text>
                     <View style={styles.ratingContainer}>
-                        <Text style={styles.rating}>⭐ {product_details.rating}</Text>
+                        <Text style={styles.rating}>⭐ {product.rating}</Text>
                     </View>
                 </Animated.View>
 
@@ -38,7 +45,7 @@ export const ProductDetail = ({ product: { product_details } }: ProductDetailPro
                     entering={FadeInDown.delay(300)}
                     style={styles.title}
                 >
-                    {product_details.title}
+                    {product.title}
                 </Animated.Text>
 
                 {/* Price */}
@@ -46,9 +53,9 @@ export const ProductDetail = ({ product: { product_details } }: ProductDetailPro
                     entering={FadeInDown.delay(400)}
                     style={styles.priceContainer}
                 >
-                    <Text style={styles.currency}>{product_details?.sale?.currency}</Text>
-                    <Text style={styles.price}>{product_details?.sale?.offer_price}</Text>
-                    <Text style={styles.vatText}>{product_details?.sale?.vat_text}</Text>
+                    <Text style={styles.currency}>{product?.sale?.currency}</Text>
+                    <Text style={styles.price}>{product?.sale?.offer_price}</Text>
+                    <Text style={styles.vatText}>{product?.sale?.vat_text}</Text>
                 </Animated.View>
 
                 {/* Stock Info */}
@@ -57,9 +64,9 @@ export const ProductDetail = ({ product: { product_details } }: ProductDetailPro
                     style={styles.stockInfo}
                 >
                     <Text style={styles.stockText}>
-                        Maximum quantity: {product_details?.stock?.max}
+                        Maximum quantity: {product?.stock?.max}
                     </Text>
-                    {product_details?.stock?.delivery_icons?.map((icon, index) => (
+                    {product?.stock?.delivery_icons?.map((icon, index) => (
                         <View key={index} style={styles.deliveryInfo}>
                             <Text style={styles.deliveryText}>
                                 {icon.label}
@@ -78,6 +85,9 @@ export const ProductDetail = ({ product: { product_details } }: ProductDetailPro
                         {formattedDescription}
                     </Text>
                 </Animated.View>
+                <View style={styles.footer}>
+                    <AddToCartButton onPress={handleAddToCart} />
+                </View>
             </View>
         </ScrollView>
     );

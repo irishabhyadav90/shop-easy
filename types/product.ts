@@ -29,7 +29,12 @@ interface Category {
 
 interface Images {
     featured_image: string;
-    gallery_images: string[];
+    gallery_images: {
+        image: string;
+        thumbnail: string;
+        medium: string;
+        full: string;
+    }[];
 }
 
 interface Inventory {
@@ -44,6 +49,10 @@ interface Label {
     active: boolean;
 }
 
+interface ProductBrand {
+    name: string;
+    logo?: string;
+}
 export interface Product {
     id: string;
     title: string;
@@ -57,6 +66,7 @@ export interface Product {
     rating: string;
     stock: Stock;
     sale: Sale;
+    brand: ProductBrand
 }
 export interface PaginationState<T> {
     data: T[];

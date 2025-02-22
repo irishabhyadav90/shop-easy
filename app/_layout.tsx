@@ -1,6 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/configs/QueryClient';
 import { Stack } from 'expo-router';
+import { CartIcon } from '@/components/common/CartIcon/CartIcon';
 
 export default function RootLayout() {
     return (
@@ -9,6 +10,7 @@ export default function RootLayout() {
                 screenOptions={{
                     headerStyle: { backgroundColor: '#fff' },
                     headerShadowVisible: false,
+                    headerRight: () => <CartIcon />,
                 }}>
                 <Stack.Screen
                     name="index"

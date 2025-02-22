@@ -2,7 +2,7 @@ import { useProductDetail } from '@/hooks/products/useProductDetail';
 import { ProductDetail } from '@/components/product/ProductDetails';
 import { Spinner } from '@/components/spinner';
 import { colors } from '@/constants/theme';
-import { ErrorView } from '@/components/common/ErrorView';
+import { ErrorView } from '@/components/common/ErrorView/ErrorView';
 
 export const ProductDetailScreen = ({ slug }: { slug: string }) => {
     const {
@@ -25,5 +25,5 @@ export const ProductDetailScreen = ({ slug }: { slug: string }) => {
         );
     }
 
-    return <ProductDetail product={product} />;
+    return <ProductDetail product={product.product_details} />;
 };
