@@ -4,8 +4,7 @@ import { useProducts } from '@/hooks/products/useProducts';
 import { ProductList } from '@/components/product/ProductList';
 import { Product } from '@/types/product';
 
-
-export default function ProductsScreen() {
+const ProductsScreen = () => {
     const router = useRouter();
     const {
         products,
@@ -34,3 +33,5 @@ export default function ProductsScreen() {
     );
 
 }
+
+export default ProductsScreen;
