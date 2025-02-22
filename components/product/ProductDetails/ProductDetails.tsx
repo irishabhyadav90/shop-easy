@@ -1,85 +1,83 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    Image,
-    ScrollView,
-    Dimensions
-} from 'react-native';
-import type { Product } from '@/types/product';
+import { View, Text, ScrollView } from 'react-native';
+import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
+import type { ProductDetail as ProductDetailInterface } from '@/types/productDetails';
+import { ImageGallery } from '../ImageGallery';
 import { styles } from './styles';
-
+import { parseDescription } from '@/utils/descriptionParser';
+interface pdp {
+    product_details: ProductDetailInterface
+}
 interface ProductDetailProps {
-    product: Product;
+    product: pdp;
 }
 
-const { width } = Dimensions.get('window');
-
-export const ProductDetail = ({ product }: ProductDetailProps) => {
+export const ProductDetail = ({ product: { product_details } }: ProductDetailProps) => {
+    const formattedDescription = parseDescription(product_details.description);
     return (
         <ScrollView style={styles.container}>
-            {/* Product Image */}
-            <Image
-                source={{ uri: product.images.featured_image }}
-                style={styles.image}
-                resizeMode="contain"
+            <ImageGallery
+                featured_image={product_details.images.featured_image}
+                gallery_images={product_details.images.gallery_images}
             />
 
-            {/* Product Info */}
-            <View style={styles.infoContainer}>
-                {/* Label if exists */}
-                {product.label.active && (
-                    <View
-                        style={[
-                            styles.labelContainer,
-                            { backgroundColor: product.label.color_code }
-                        ]}
-                    >
-                        <Text style={styles.labelText}>
-                            {product.label.label_text}
-                        </Text>
+            <View style={styles.content}>
+                {/* Brand */}
+                <Animated.View
+                    entering={FadeInDown.delay(200)}
+                    style={styles.brandContainer}
+                >
+                    <Text style={styles.brandName}>{product_details?.brand?.name}</Text>
+                    <View style={styles.ratingContainer}>
+                        <Text style={styles.rating}>⭐ {product_details.rating}</Text>
                     </View>
-                )}
+                </Animated.View>
 
                 {/* Title */}
-                <Text style={styles.title}>{product.title}</Text>
+                <Animated.Text
+                    entering={FadeInDown.delay(300)}
+                    style={styles.title}
+                >
+                    {product_details.title}
+                </Animated.Text>
 
                 {/* Price */}
-                <View style={styles.priceContainer}>
-                    <Text style={styles.currency}>
-                        {product.sale.currency}
-                    </Text>
-                    <Text style={styles.price}>
-                        {product.sale.offer_price}
-                    </Text>
-                    {product.sale.regular_price !== product.sale.offer_price && (
-                        <Text style={styles.regularPrice}>
-                            {product.sale.regular_price}
-                        </Text>
-                    )}
-                </View>
-
-                {/* Rating */}
-                <View style={styles.ratingContainer}>
-                    <Text style={styles.rating}>⭐ {product.rating}</Text>
-                </View>
+                <Animated.View
+                    entering={FadeInDown.delay(400)}
+                    style={styles.priceContainer}
+                >
+                    <Text style={styles.currency}>{product_details?.sale?.currency}</Text>
+                    <Text style={styles.price}>{product_details?.sale?.offer_price}</Text>
+                    <Text style={styles.vatText}>{product_details?.sale?.vat_text}</Text>
+                </Animated.View>
 
                 {/* Stock Info */}
-                <View style={styles.stockInfo}>
+                <Animated.View
+                    entering={FadeInDown.delay(500)}
+                    style={styles.stockInfo}
+                >
                     <Text style={styles.stockText}>
-                        Max quantity: {product.stock.max}
+                        Maximum quantity: {product_details?.stock?.max}
                     </Text>
-                    {product.stock.delivery_icons.map((delivery, index) => (
-                        <Text key={index} style={styles.deliveryText}>
-                            {delivery.label}
-                        </Text>
+                    {product_details?.stock?.delivery_icons?.map((icon, index) => (
+                        <View key={index} style={styles.deliveryInfo}>
+                            <Text style={styles.deliveryText}>
+                                {icon.label}
+                            </Text>
+                        </View>
                     ))}
-                </View>
+                </Animated.View>
 
-                {/* SKU */}
-                <Text style={styles.sku}>
-                    SKU: {product.inventory.sku}
-                </Text>
+                {/* Description */}
+                <Animated.View
+                    entering={FadeInUp.delay(600)}
+                    style={styles.descriptionContainer}
+                >
+                    <Text style={styles.descriptionTitle}>Description</Text>
+                    <Text style={styles.description}>
+                        {formattedDescription}
+                    </Text>
+                </Animated.View>
             </View>
         </ScrollView>
     );
