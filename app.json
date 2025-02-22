@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "shop-easy",
+    "scheme": "shop-easy",
     "slug": "shop-easy",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +23,11 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

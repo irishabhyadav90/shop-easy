@@ -5,5 +5,5 @@ export default {
         extra: {
             BASE_URL: process.env.BASE_URL,
         },
-    },
+    }
 };
