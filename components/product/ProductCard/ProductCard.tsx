@@ -44,6 +44,7 @@ export const ProductCard = ({ product, onPress }: ProductCardProps) => {
             onPress={() => onPress(product)}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
+            testID={'product-card'}
         >
             <Image
                 source={{ uri: product.images?.featured_image }}
