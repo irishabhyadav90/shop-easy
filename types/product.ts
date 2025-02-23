@@ -68,15 +68,3 @@ export interface Product {
     sale: Sale;
     brand: ProductBrand
 }
-export interface PaginationState<T> {
-    data: T[];
-    page: number;
-    loading: boolean;
-    hasMore: boolean;
-};
-
-export type PaginationAction<T> =
-    | { type: 'FETCH_START' }
-    | { type: 'FETCH_SUCCESS'; payload: T[] }
-    | { type: 'FETCH_ERROR' }
-    | { type: 'RESET' };

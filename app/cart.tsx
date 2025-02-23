@@ -1,18 +1,8 @@
-import { Stack } from 'expo-router';
-import CartScreen from '@/screens/CartScreen';
+import CartScreen from '@/screens/cart';
 
 export default function CartRoute() {
     return (
         <>
-            <Stack.Screen
-                options={{
-                    title: 'Shopping Cart',
-                    headerStyle: {
-                        backgroundColor: '#fff',
-                    },
-                    headerShadowVisible: false,
-                }}
-            />
             <CartScreen />
         </>
     );

@@ -22,7 +22,7 @@ export const SearchBar = ({ value, onChangeText, isLoading }: SearchBarProps) =>
                 placeholderTextColor={colors.text.secondary}
             />
             {isLoading && (
-                <Spinner color={colors.primary} size="large" />
+                <Spinner color={colors.primary} size="small" />
             )}
         </View>
     );

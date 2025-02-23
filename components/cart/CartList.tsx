@@ -17,7 +17,7 @@ export const CartList = ({ items }: { items: CartItem[] }) => {
                             {item.product.title}
                         </Text>
                         <Text style={styles.price}>
-                            {item.product.sale.currency} {item.product.sale.regular_price}
+                            {item.product?.sale?.currency} {item?.product?.sale?.regular_price}
                         </Text>
                     </View>
                 </View>

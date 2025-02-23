@@ -6,6 +6,8 @@ import { Product } from '@/types/product';
 import { useSearch } from '@/hooks/products/useSearch';
 import { SearchBar } from '@/components/search';
 
+import { styles } from './styles';
+
 const ProductsScreen = () => {
     const router = useRouter();
     const {
@@ -33,7 +35,7 @@ const ProductsScreen = () => {
     const isLoading = searchTerm ? isSearching : isLoadingProducts;
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={styles.container}>
             <SearchBar
                 value={searchTerm}
                 onChangeText={setSearchTerm}
