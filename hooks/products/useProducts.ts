@@ -11,15 +11,16 @@ export const useProducts = () => {
         refetch
     } = useInfiniteQuery({
         queryKey: ['products'],
-        queryFn: ({ pageParam = 1 }) => fetchProducts(pageParam),
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage?.data?.length < 20) return undefined;
-            return allPages?.length + 1;
+        queryFn: ({ pageParam = 0 }) => fetchProducts(pageParam),
+        getNextPageParam: (_, allPages) => {
+            return allPages.length * 19;
         },
-        initialPageParam: 1
+        initialPageParam: 0
     });
 
-    const products = data?.pages.flatMap(page => page.data)?.[0]?.products ?? [];
+    const products = data?.pages.reduce((acc, page) => {
+        return [...acc, ...(page?.data?.products ?? [])];
+    }, []) ?? [];
 
     return {
         products,

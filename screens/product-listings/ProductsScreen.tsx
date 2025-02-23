@@ -22,8 +22,7 @@ const ProductsScreen = () => {
         isLoading: isLoadingProducts,
         loadMore,
         hasMore,
-        isLoadingMore,
-        refresh
+        isLoadingMore
     } = useProducts();
 
     const handleProductPress = (product: Product) => {
@@ -33,6 +32,12 @@ const ProductsScreen = () => {
 
     const displayData = searchTerm ? searchResults : products;
     const isLoading = searchTerm ? isSearching : isLoadingProducts;
+
+    const handleEndReached = () => {
+        if (!isLoading && hasMore) {
+            loadMore();
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -45,7 +50,7 @@ const ProductsScreen = () => {
                 products={displayData}
                 isLoading={isLoading}
                 isLoadingMore={isLoadingMore}
-                onEndReached={() => hasMore && loadMore}
+                onEndReached={handleEndReached}
                 onProductPress={handleProductPress}
             />
         </View>

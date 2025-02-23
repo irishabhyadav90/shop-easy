@@ -5,12 +5,22 @@ const baseURL = Constants.expoConfig?.extra?.BASE_URL || '';
 
 const api = axios.create({
     baseURL,
-    timeout: 10000
+    timeout: 30000,
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
 });
 
-export const fetchProducts = async (skip = 0, take = 10) => {
+export const fetchProducts = async (skip = 0, take = 20) => {
+    console.log("fetching skp", skip, "take", take)
     try {
-        const response = await api.get('/v1/products');
+        const response = await api.get(`/v1/products`, {
+            params: {
+                skip,
+                take
+            }
+        });
         return response.data;
     } catch (error) {
         console.log("error", error);

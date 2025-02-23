@@ -51,7 +51,7 @@ export const ProductList = ({
             numColumns={2}
             contentContainerStyle={styles.list}
             onEndReached={onEndReached}
-            onEndReachedThreshold={0.5}
+            onEndReachedThreshold={0.2}
             ListFooterComponent={ListFooterComponent}
         />
     );
