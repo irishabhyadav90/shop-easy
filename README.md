@@ -15,7 +15,9 @@ A React Native e-commerce application built with Expo.
 
 git clone https://github.com/irishabhyadav90/shop-easy.git
 
-cd shop-easy
+touch .env
+
+# Please put the baseUrl in env -> BASE_URL=https://prodapp.lifepharmacy.com/api
 
 touch .env
 
