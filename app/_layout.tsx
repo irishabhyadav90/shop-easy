@@ -12,7 +12,6 @@ export default function RootLayout() {
                     headerShadowVisible: false,
                     headerRight: () => <CartIcon />,
                 }}
-                initialRouteName='cart'
             >
                 <Stack.Screen
                     name="index"
