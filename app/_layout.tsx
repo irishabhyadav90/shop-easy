@@ -11,7 +11,9 @@ export default function RootLayout() {
                     headerStyle: { backgroundColor: '#fff' },
                     headerShadowVisible: false,
                     headerRight: () => <CartIcon />,
-                }}>
+                }}
+                initialRouteName='cart'
+            >
                 <Stack.Screen
                     name="index"
                     options={{ title: 'Products' }}

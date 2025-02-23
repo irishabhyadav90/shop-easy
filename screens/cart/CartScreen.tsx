@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { useCartStore } from '@/store/cartStore';
 import { CartSummary } from '@/components/cart/CartSummary';
 import { EmptyCart } from '@/components/cart/EmptyCart';
-import { colors } from '@/constants/theme';
 import { CartList } from '@/components/cart/CartList';
+import { styles } from './styles';
 
 const CartScreen = () => {
     const { items, getTotalPrice } = useCartStore();
@@ -22,14 +22,5 @@ const CartScreen = () => {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.background.main,
-    },
-    scrollView: {
-        flex: 1,
-    },
-});
 
 export default CartScreen;

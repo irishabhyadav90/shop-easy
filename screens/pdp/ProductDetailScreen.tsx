@@ -4,7 +4,7 @@ import { Spinner } from '@/components/spinner';
 import { colors } from '@/constants/theme';
 import { ErrorView } from '@/components/common/ErrorView/ErrorView';
 
-export const ProductDetailScreen = ({ slug }: { slug: string }) => {
+const ProductDetailScreen = ({ slug }: { slug: string }) => {
     const {
         data: product,
         isLoading,
@@ -27,3 +27,5 @@ export const ProductDetailScreen = ({ slug }: { slug: string }) => {
 
     return <ProductDetail product={product.product_details} />;
 };
+
+export default ProductDetailScreen;

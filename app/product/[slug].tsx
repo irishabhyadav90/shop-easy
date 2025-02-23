@@ -1,8 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
-import { ProductDetailScreen } from '@/screens/ProductDetailScreen';
+import ProductDetailScreen from '@/screens/pdp';
 
 export default function ProductDetailRoute() {
     const { slug } = useLocalSearchParams<{ slug: string }>();
-    console.log("slug----", slug)
     return <ProductDetailScreen slug={slug} />;
 }
