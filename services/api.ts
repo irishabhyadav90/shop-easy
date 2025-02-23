@@ -26,3 +26,18 @@ export const fetchProductDetail = async (slug: string) => {
     }
 };
 
+export const searchProducts = async (term: string, skip: number = 0, take: number = 10) => {
+    try {
+        const response = await api.get(`/v2/search`, {
+            params: {
+                term,
+                skip,
+                take
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('error:', error);
+        throw error;
+    }
+};
