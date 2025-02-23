@@ -5,4 +5,4 @@ interface spinner {
     size: number | "small" | "large" | undefined
 }
 
-export const Spinner = ({ size, color }: spinner) => <ActivityIndicator size={size} color={color} />
+export const Spinner = ({ size, color }: spinner) => <ActivityIndicator testID={'loading-spinner'} size={size} color={color} />

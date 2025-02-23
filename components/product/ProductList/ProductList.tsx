@@ -53,6 +53,7 @@ export const ProductList = ({
             onEndReached={onEndReached}
             onEndReachedThreshold={0.2}
             ListFooterComponent={ListFooterComponent}
+            testID='product-list'
         />
     );
 };
