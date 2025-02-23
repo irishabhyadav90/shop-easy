@@ -34,7 +34,7 @@ const ProductsScreen = () => {
     const isLoading = searchTerm ? isSearching : isLoadingProducts;
 
     const handleEndReached = () => {
-        if (!isLoading && hasMore) {
+        if (!isLoading && hasMore && !searchTerm) {
             loadMore();
         }
     };
