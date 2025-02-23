@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: spacing.md,
+        minHeight: 100
     },
     name: {
         fontSize: typography.size.regular,
